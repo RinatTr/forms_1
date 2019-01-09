@@ -49,8 +49,17 @@ class Form extends Component {
       formConfirmed: true
     })
   }
+
+  handleClose = () => {
+    this.setState({
+      popup: "pop-up-hide"
+    })
+  }
   render() {
     let { name, bdate, country, diet, wannabe, popup, formConfirmed } = this.state;
+    if (formConfirmed) {
+      return <p>THANK YOU FOR YOUR SUBMISSION.</p>
+    } else {
     return (
       <div className="Form">
         <header className="Form-header">
@@ -88,6 +97,7 @@ class Form extends Component {
         </form>
           <button onClick={this.handleSubmit}>Submit</button>
           <div className={popup}>
+            <button onClick={this.handleClose} id="close">x</button>
              Your Submission:
             <ul>
               <li>Name: {name}</li>
@@ -97,10 +107,12 @@ class Form extends Component {
               <li>Do you want to be a Mars Explorer: {wannabe}</li>
             </ul>
             <button onClick={this.handleConfirm}>Confirm</button>
-            <p>{formConfirmed ? "THANK YOU FOR YOUR SUBMISSION" : ""}</p>
+
             </div>
       </div>
     );
+  }
+
   }
 }
 
