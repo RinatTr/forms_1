@@ -27,29 +27,75 @@ textarea {
   display: none;
 }
 
+
 .pop-up-show {
   position: fixed;
   z-index: 1;
   width: 80vmin;
   background: linear-gradient(to right, #d8aa82 0%,#8c4e02 100%);
-  border-radius: 1px;
+  border-radius: 2px;
   font-size: 16px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
 }
-.pop-up-show button {
+
+div#text {
+  text-align: left;
+}
+
+div#confirm {
 
 }
 
-.pop-up-show button#close {
-  position: absolute;
-  right: 10px;
-}
 
 li {
     list-style-type: none;
 }
 
 button {
+    text-align: center;
+    width: 150px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 50px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    transition: all .2s ease-in-out;
+    background-image: linear-gradient(to right, #d8aa82 ,#8c4e02);
+    box-shadow: 0 4px 15px 0 black;
+}
 
+button:hover {
+    background-position: 100% 0;
+    transition: all .2s ease-in-out;
+}
+
+button:active {
+  background: #e5e5e5;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button#close {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 1px;
+  box-shadow: none;
+  margin: 0px;
+}
+
+button#confirm {
+  margin: 5px;
+  box-shadow: none;
 }

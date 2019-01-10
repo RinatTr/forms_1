@@ -4,6 +4,7 @@ import './Form.css';
 const countries = require("./countries.json");
 const diet = ["omnivore","vegetarian","vegan","kosher","gluten-free","diary-free"];
 
+//the default of a submit event on the form is to do a POST request, refresh the page, and turn the url into a query string. Because we don’t want this behavior we use preventDefault
 class Form extends Component {
   constructor() {
     super();
@@ -21,7 +22,7 @@ class Form extends Component {
 
   displayCountries() {
     return countries.map(country => {
-      return <option value={country["name"]}>{country["name"]}</option>
+      return <option key={country.name} value={country["name"]}>{country["name"]}</option>
     })
   }
 
@@ -95,9 +96,10 @@ class Form extends Component {
             <textarea type="text" placeholder="" name="wannabe" value={this.state.wannabe} id="wannabe" />
           </p>
         </form>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit}>SUBMIT</button>
           <div className={popup}>
-            <button onClick={this.handleClose} id="close">x</button>
+            <div id="text">
+            <button onClick={this.handleClose} id="close"></button>
              Your Submission:
             <ul>
               <li>Name: {name}</li>
@@ -106,7 +108,8 @@ class Form extends Component {
               <li>Dietary Preferences: {diet}</li>
               <li>Do you want to be a Mars Explorer: {wannabe}</li>
             </ul>
-            <button onClick={this.handleConfirm}>Confirm</button>
+            </div>
+            <div id="confirm"><button id="confirm" onClick={this.handleConfirm}>CONFIRM</button></div>
 
             </div>
       </div>
