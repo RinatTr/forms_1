@@ -29,7 +29,7 @@ textarea {
 
 
 .pop-up-show {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   width: 80vmin;
   background: linear-gradient(to right, #d8aa82 0%,#8c4e02 100%);
@@ -98,4 +98,12 @@ button#close {
 button#confirm {
   margin: 5px;
   box-shadow: none;
+}
+
+div span {
+  margin: 5px;
+}
+
+p {
+  margin-bottom: 5px;
 }

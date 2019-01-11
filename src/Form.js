@@ -15,7 +15,11 @@ class Form extends Component {
       diet: null,
       wannabe: null,
       popup: "pop-up-hide",
-      formConfirmed: false
+      formConfirmed: false,
+      breath: "",
+      marital: "",
+      stress: "",
+      claus: ""
     }
     this.handleChange = this.handleChange.bind(this)//so it will work in chrome
   }
@@ -36,7 +40,6 @@ class Form extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-
   }
 
   handleSubmit = () => {
@@ -57,7 +60,17 @@ class Form extends Component {
     })
   }
   render() {
-    let { name, bdate, country, diet, wannabe, popup, formConfirmed } = this.state;
+    let { name,
+          bdate,
+          country,
+          diet,
+          wannabe,
+          popup,
+          formConfirmed,
+          breath,
+          marital,
+          stress,
+          claus } = this.state;
     if (formConfirmed) {
       return <p>THANK YOU FOR YOUR SUBMISSION.</p>
     } else {
@@ -93,8 +106,39 @@ class Form extends Component {
           <p>
             <label htmlFor="wannabe"> Do you want to be a Mars Explorer? </label>
             <br />
-            <textarea type="text" placeholder="" name="wannabe" value={this.state.wannabe} id="wannabe" />
+            <textarea type="text" placeholder="" name="wannabe" value={wannabe} id="wannabe" />
           </p>
+          <p>
+            Can you hold your breath under water longer than 1 minute?
+          </p>
+            <div>
+              <span><input type="radio" name="breath" value="yes" checked={breath === "yes"} onChange={this.handleChange} />Yes</span>
+              <span><input type="radio" name="breath" value="no" checked={breath === "no"} onChange={this.handleChange} />No</span>
+            </div>
+          <p>
+            What is your marital status?
+          </p>
+            <div>
+              <span><input type="radio" name="marital" value="Married" checked={marital === "Married"} onChange={this.handleChange} />Married</span>
+              <span><input type="radio" name="marital" value="Unmarried" checked={marital === "Unmarried"} onChange={this.handleChange} />Unmarried</span>
+            </div>
+          <p>
+            When you are in a stresstful or difficult situation, how do you most frequently react?
+          </p>
+            <div>
+              <span><input type="radio" name="stress" value="Determination: ..." checked={stress === "Determination: ..."} onChange={this.handleChange} />Determination: I continue to confront the situation.</span>
+              <span><input type="radio" name="stress" value="Defeat: ..." checked={stress === "Defeat: ..."} onChange={this.handleChange} />Defeat: I stop confronting the situation.</span>
+              <span><input type="radio" name="stress" value="Anger: ..." checked={stress === "Anger: ..."} onChange={this.handleChange} />Anger: I become upset at the situation.</span>
+              <span><input type="radio" name="stress" value="Resourcefulness: ..." checked={stress === "Resourcefulness: ..."} onChange={this.handleChange} />Resourcefulness: I seek help to confront the situation.</span>
+            </div>
+          <p>
+            Are you claustrophobic?
+          </p>
+            <div>
+              <span><input type="radio" name="claus" value="yes" checked={claus === "yes"} onChange={this.handleChange} />Yes</span>
+              <span><input type="radio" name="claus" value="no" checked={claus === "no"} onChange={this.handleChange} />No</span>
+              <span><input type="radio" name="claus" value="I don't know" checked={claus === "I don't know"} onChange={this.handleChange} />I don't know</span>
+            </div>
         </form>
           <button onClick={this.handleSubmit}>SUBMIT</button>
           <div className={popup}>
@@ -107,6 +151,7 @@ class Form extends Component {
               <li>Country: {country}</li>
               <li>Dietary Preferences: {diet}</li>
               <li>Do you want to be a Mars Explorer: {wannabe}</li>
+              <li>Can you hold your breath under water longer than 1 minute? {breath}</li>
             </ul>
             </div>
             <div id="confirm"><button id="confirm" onClick={this.handleConfirm}>CONFIRM</button></div>
