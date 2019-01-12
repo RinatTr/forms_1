@@ -9,17 +9,33 @@ class Form extends Component {
   constructor() {
     super();
     this.state = {
+      popup: "pop-up-hide",
+      formConfirmed: false,
       name: null,
       bdate: null,
       country: null,
       diet: null,
       wannabe: null,
-      popup: "pop-up-hide",
-      formConfirmed: false,
       breath: "",
       marital: "",
       stress: "",
-      claus: ""
+      claus: "",
+      cancer: false,
+      heart: false,
+      diabetes: false,
+      siblings: false,
+      siblingsNum: "",
+      parents: false,
+      parentsNum: "",
+      grandparents: false,
+      grandparentsNum: "",
+      hs: false,
+      ad: false,
+      bd: false,
+      md: false,
+      phd: false,
+      other: false,
+      otherInput: ""
     }
     this.handleChange = this.handleChange.bind(this)//so it will work in chrome
   }
@@ -36,10 +52,9 @@ class Form extends Component {
     })
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleChange = (event) => {
+    let { name, value, type, checked } = event.target;
+    (type === "checkbox") ? this.setState({ [name]: checked }) : this.setState({ [name]: value })
   }
 
   handleSubmit = () => {
@@ -70,7 +85,23 @@ class Form extends Component {
           breath,
           marital,
           stress,
-          claus } = this.state;
+          claus,
+          cancer,
+          heart,
+          diabetes,
+          siblings,
+          siblingsNum,
+          parents,
+          parentsNum,
+          grandparents,
+          grandparentsNum,
+          hs,
+          ad,
+          bd,
+          md,
+          phd,
+          other,
+          otherInput } = this.state;
     if (formConfirmed) {
       return <p>THANK YOU FOR YOUR SUBMISSION.</p>
     } else {
@@ -80,7 +111,7 @@ class Form extends Component {
           <p>
             <h2>ARE YOU READY TO FLY TO MARS?</h2>
           </p>
-          <img src="https://space-facts.com/wp-content/uploads/mars-transparent-300x300.png" />
+          <img alt="mars" src="https://space-facts.com/wp-content/uploads/mars-transparent-300x300.png" />
         </header>
         <form onChange={this.handleChange}>
           <p>
@@ -108,6 +139,7 @@ class Form extends Component {
             <br />
             <textarea type="text" placeholder="" name="wannabe" value={wannabe} id="wannabe" />
           </p>
+          <div className="radios">
           <p>
             Can you hold your breath under water longer than 1 minute?
           </p>
@@ -123,7 +155,7 @@ class Form extends Component {
               <span><input type="radio" name="marital" value="Unmarried" checked={marital === "Unmarried"} onChange={this.handleChange} />Unmarried</span>
             </div>
           <p>
-            When you are in a stresstful or difficult situation, how do you most frequently react?
+            When you are in a stressful or difficult situation, how do you most frequently react?
           </p>
             <div>
               <span><input type="radio" name="stress" value="Determination: ..." checked={stress === "Determination: ..."} onChange={this.handleChange} />Determination: I continue to confront the situation.</span>
@@ -139,30 +171,153 @@ class Form extends Component {
               <span><input type="radio" name="claus" value="no" checked={claus === "no"} onChange={this.handleChange} />No</span>
               <span><input type="radio" name="claus" value="I don't know" checked={claus === "I don't know"} onChange={this.handleChange} />I don't know</span>
             </div>
+          </div>
+          <div className="checkboxes">
+            <p>
+              Does your family have a history of (check all that apply):
+            </p>
+            <div>
+              <span>
+              <input
+                name="cancer"
+                type="checkbox"
+                checked={cancer}
+                onChange={this.handleChange}
+                /> Cancer
+            </span>
+            <span>
+              <input
+                name="heart"
+                type="checkbox"
+                checked={heart}
+                onChange={this.handleChange}
+                /> Heart Disease
+            </span>
+            <span>
+              <input
+                name="diabetes"
+                type="checkbox"
+                checked={diabetes}
+                onChange={this.handleChange}
+                /> Diabetes
+            </span>
+          </div>
+            <p>
+              Do you have any living (check all that apply):
+            </p>
+            <div>
+              <span>
+              <input
+                name="siblings"
+                type="checkbox"
+                checked={siblings}
+                onChange={this.handleChange}
+                /> Siblings? <br /> {siblings ? <input type="text" placeholder="How many?" name="siblingsNum" value={siblingsNum} /> : ""}
+            </span>
+            <span>
+              <input
+                name="parents"
+                type="checkbox"
+                checked={parents}
+                onChange={this.handleChange}
+                /> Parents? <br /> {parents ? <input type="text" placeholder="How many?" name="parentsNum" value={parentsNum} /> : ""}
+            </span>
+            <span>
+              <input
+                name="grandparents"
+                type="checkbox"
+                checked={grandparents}
+                onChange={this.handleChange}
+                /> Grandparents? <br /> {grandparents ? <input type="text" placeholder="How many?" name="grandparentsNum" value={grandparentsNum} /> : ""}
+            </span>
+            </div>
+            <p>
+              Check all educational credentials you have received:
+            </p>
+            <div>
+              <span>
+              <input
+                name="hs"
+                type="checkbox"
+                checked={hs}
+                onChange={this.handleChange}
+                /> High school diploma or GED equivalent
+            </span>
+            <span>
+              <input
+                name="ad"
+                type="checkbox"
+                checked={ad}
+                onChange={this.handleChange}
+                /> Associate's Degree
+            </span>
+            <span>
+              <input
+                name="bd"
+                type="checkbox"
+                checked={bd}
+                onChange={this.handleChange}
+                /> Bachelor's Degree
+            </span>
+            <span>
+              <input
+                name="md"
+                type="checkbox"
+                checked={md}
+                onChange={this.handleChange}
+                /> Master's Degree
+            </span>
+            <span>
+              <input
+                name="phd"
+                type="checkbox"
+                checked={phd}
+                onChange={this.handleChange}
+                /> PhD
+            </span>
+            <span>
+              <input
+                name="other"
+                type="checkbox"
+                checked={other}
+                onChange={this.handleChange}
+                /> Other <br />{other ? <input type="text" placeholder="please specify" name="otherInput" value={otherInput} /> : ""}
+            </span>
+            </div>
+        </div>
         </form>
           <button onClick={this.handleSubmit}>SUBMIT</button>
           <div className={popup}>
-            <div id="text">
+            <div id="popup-text">
             <button onClick={this.handleClose} id="close"></button>
              Your Submission:
             <ul>
-              <li>Name: {name}</li>
-              <li>Birth Date: {bdate}</li>
-              <li>Country: {country}</li>
-              <li>Dietary Preferences: {diet}</li>
-              <li>Do you want to be a Mars Explorer: {wannabe}</li>
-              <li>Can you hold your breath under water longer than 1 minute? {breath}</li>
+              <li>Name: <span>{name}</span></li>
+              <li>Birth Date: <span>{bdate}</span></li>
+              <li>Country: <span>{country}</span></li>
+              <li>Dietary Preferences: <span>{diet}</span></li>
+              <li>Do you want to be a Mars Explorer: <span>{wannabe}</span></li>
+              <li>Can you hold your breath under water longer than 1 minute? <span>{breath}</span></li>
+              <li>What is your marital status? <span>{marital}</span></li>
+              <li>When you are in a stressful ... ? <span>{stress}</span></li>
+              <li>Are you claustrophobic? <span>{claus}</span></li>
+              <li>Family medical history: <span>{cancer? "cancer " : ""} {heart? "heart disease":""} {diabetes? "diabetes":""}</span></li>
+              <li>Family living: <span>{siblings? siblingsNum+" siblings" : ""} {parents? parentsNum+" parents":""} {grandparents? grandparentsNum+" grandparents":""}</span></li>
+              <li>Education: <span>{hs? "High school diploma":""} {ad? "Associate's Degree":""} {bd? "Bachelor's Degree":""} {md? "Master's Degree":""} {phd? "PhD":""} {other? "Other: "+otherInput:""}</span></li>
             </ul>
             </div>
             <div id="confirm"><button id="confirm" onClick={this.handleConfirm}>CONFIRM</button></div>
-
-            </div>
+          </div>
       </div>
     );
   }
 
   }
 }
+//WHEN BACK:
+//add check boxes
+//watch props lecture.
 
-//
+//make the your submission as props.
+
 export default Form;

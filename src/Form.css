@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300|Space+Mono");
+
+/* Form - general */
 .Form {
+  font-family: "Lato", sans-serif;
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
@@ -23,6 +27,16 @@ textarea {
   height: 100px;
 }
 
+div span {
+  margin: 5px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+
+/* popup window */
 .pop-up-hide {
   display: none;
 }
@@ -32,7 +46,7 @@ textarea {
   position: absolute;
   z-index: 1;
   width: 80vmin;
-  background: linear-gradient(to right, #d8aa82 0%,#8c4e02 100%);
+  background: linear-gradient(to right, #483b2e 10%, #a28268  120%);
   border-radius: 2px;
   font-size: 16px;
   display: flex;
@@ -40,19 +54,29 @@ textarea {
   padding: 10px;
 }
 
-div#text {
+div#popup-text {
   text-align: left;
+  font-family: monospace, sans-serif;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-div#confirm {
-
+div#popup-text ul li span {
+  font-weight: lighter;
+  color: white;
 }
 
 
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
+input {
+  margin-right: 5px;
+}
+
+/* buttons */
 button {
     text-align: center;
     width: 150px;
@@ -100,10 +124,24 @@ button#confirm {
   box-shadow: none;
 }
 
-div span {
-  margin: 5px;
+/* radios and checkboxes */
+.checkboxes div {
+  background: #384049;
+}
+.checkboxes div span {
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  margin: 2px;
+}
+.radios div {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  font-weight: lighter;
+  background: #384049;
 }
 
-p {
-  margin-bottom: 5px;
+.radios div span {
+  margin: 2px;
 }
